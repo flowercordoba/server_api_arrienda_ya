@@ -6,6 +6,8 @@ import { AdminRolesResolver } from './resolvers/adminRoles.resolver';
 import { AdminRolesService } from './services/adminRoles.service';
 import { AdminUserService } from './services/adminUser.service';
 import { AdminUserResolver } from './resolvers/adminUser.resolver';
+import { AdminUserLoandLordService } from './services/adminLoandLord.service';
+import { AdminUserLonadLoardResolver } from './resolvers/adminUserLoadLoard.resolver';
 
 @Module({
   providers: [
@@ -15,7 +17,11 @@ import { AdminUserResolver } from './resolvers/adminUser.resolver';
     AdminService,
     RolesInitializationService,
     AdminUserResolver,
-    AdminUserService
+    AdminUserService,
+    AdminUserLoandLordService,
+    AdminUserLonadLoardResolver
+    
+
   ],
 })
 export class AdminModule {}

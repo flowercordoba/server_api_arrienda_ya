@@ -14,6 +14,40 @@ type Role {
   users: [User!]
 }
 
+type Landlord {
+  id: String!
+  fullName: String
+  phoneNumber: String!
+  profilePicture: String
+  companyName: String
+  companyAddress: String
+  taxId: String
+  idDocument: String
+  proofOfOwnership: String
+  address: String
+  city: String!
+  country: String!
+  preferredPaymentMethod: String
+  preferredCurrency: String
+  email: String!
+  user: User!
+  isActive: Boolean!
+  registrationDate: DateTime!
+  lastLogin: DateTime
+  profileCompleted: Boolean!
+  notes: String
+  kycVerified: Boolean!
+  kycVerificationDate: DateTime
+  kycStatus: String
+  kycRejectionReason: String
+  kycDocumentUrl: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Tenant {
   id: String!
   fullName: String!
@@ -46,11 +80,6 @@ type Property {
   updatedAt: DateTime!
 }
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type User {
   id: String!
   name: String!
@@ -70,6 +99,8 @@ type Query {
   admin(id: Int!): Admin!
   roles: [Role!]!
   user: [User!]!
+  listAllUserLoandLord: [Landlord!]!
+  findOneUserLandlord(id: String!): Landlord!
 }
 
 type Mutation {
@@ -79,6 +110,7 @@ type Mutation {
   createAdmin(createAdminInput: CreateAdminInput!): Admin!
   updateAdmin(updateAdminInput: UpdateAdminInput!): Admin!
   removeAdmin(id: Int!): Admin!
+  toggleLandlordStatus(id: String!): Landlord!
 }
 
 input CreateTenentInput {
