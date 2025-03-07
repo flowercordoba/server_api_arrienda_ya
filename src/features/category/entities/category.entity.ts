@@ -1,5 +1,6 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Property } from '@root/features/properties/entities/property.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity('categories') 
@@ -11,5 +12,8 @@ export class Category {
   @Field({nullable:true})
   @Column({ type: 'varchar', length: 255 })
   name!: string;
+    @Field(() => [Property])
+    @ManyToMany(() => Property, (property) => property.tags)
+    properties!: Property[];
 
 }

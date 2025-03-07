@@ -38,14 +38,14 @@ export class Property {
   @ManyToOne(() => User, (user) => user.properties, { nullable: false })
 
 
-  // @Field(() => [Category])
-  // @ManyToMany(() => Category, (category) => category.properties)
-  // @JoinTable({
-  //   name: 'property_categories',
-  //   joinColumn: { name: 'property_id', referencedColumnName: 'id' },
-  //   inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' }
-  // })
-  // categories!: Category[];
+  @Field(() => [Category])
+  @ManyToMany(() => Category, (category) => category.properties)
+  @JoinTable({
+    name: 'property_categories',
+    joinColumn: { name: 'property_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' }
+  })
+  categories!: Category[];
 
   @Field(() => [Tag], { nullable: true })
   @ManyToMany(() => Tag, (tag) => tag.properties)
