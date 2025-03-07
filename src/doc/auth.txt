@@ -1,0 +1,41 @@
+Correcto, en la plataforma habíamos identificado los siguientes **cuatro tipos de usuarios**:
+
+1. **Tenant (Inquilino):**  
+   - Usuario que busca propiedades para arrendar.  
+   - Puede:
+     - Buscar y filtrar propiedades.
+     - Aplicar para arrendamientos.
+     - Realizar pagos a través de la plataforma.
+     - Consultar su historial de arrendamientos y calificaciones.
+
+2. **Landlord (Propietario):**  
+   - Usuario que posee propiedades y las publica para arrendar.  
+   - Puede:
+     - Listar propiedades.
+     - Gestionar contratos de arrendamiento.
+     - Revisar solicitudes de inquilinos (aprobación/rechazo).
+     - Acceder a seguros y reportes de inquilinos.
+
+3. **Admin:**  
+   - Usuario que gestiona la plataforma.  
+   - Puede:
+     - Moderar publicaciones.
+     - Resolver disputas entre usuarios.
+     - Configurar tarifas, comisiones, y políticas de la plataforma.
+     - Acceder a reportes financieros y métricas del sistema.
+
+4. **Business (Empresa):**  
+   - Usuario corporativo que busca oficinas o espacios para arrendar, o que administra propiedades en nombre de terceros.  
+   - Puede:
+     - Listar propiedades corporativas.
+     - Gestionar arrendamientos masivos.
+     - Acceder a herramientas personalizadas, como gestión de contratos múltiples.
+
+---
+
+### **Relación entre estos roles:**
+1. **Tenant** interactúa con **Landlords** al aplicar para propiedades.  
+2. **Landlords** gestionan sus propiedades y solicitudes de **Tenants**.  
+3. **Admin** supervisa y regula el funcionamiento de la plataforma para todos los roles.  
+4. **Business** actúa como un Landlord, pero con características avanzadas para gestión corporativa.  
+
