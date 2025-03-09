@@ -61,10 +61,66 @@ type Tenant {
   user: User!
 }
 
+type Category {
+  id: ID!
+  name: String
+  properties: [Property!]!
+  user: User!
+}
+
 type Tag {
   id: ID!
   name: String!
   properties: [Property!]!
+  user: User!
+}
+
+type Amenity {
+  id: String!
+  name: String!
+}
+
+type PropertyImage {
+  id: String!
+  imageUrl: String!
+  description: String
+  order: Float!
+}
+
+type PropertyStatus {
+  id: String!
+  status: String!
+}
+
+type RentalHistory {
+  id: String!
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+type Review {
+  id: String!
+  rating: Float!
+  comment: String
+}
+
+type Rule {
+  id: String!
+  name: String!
+}
+
+type PaymentCondition {
+  id: String!
+  name: String!
+}
+
+type Location {
+  id: String!
+  country: String!
+  city: String!
+  neighborhood: String
+  latitude: Float
+  longitude: Float
 }
 
 type Property {
@@ -75,9 +131,18 @@ type Property {
   status: String
   description: String
   createdBy: User!
+  categories: [Category!]!
   tags: [Tag!]
   createdAt: DateTime!
   updatedAt: DateTime!
+  locationProperty: Location!
+  amenities: [Amenity!]!
+  rules: [Rule!]!
+  paymentConditions: [PaymentCondition!]!
+  statusPayments: PropertyStatus!
+  reviews: [Review!]!
+  rentalHistory: [RentalHistory!]!
+  images: [PropertyImage!]!
 }
 
 type User {
@@ -87,6 +152,8 @@ type User {
   primaryRole: String!
   roles: [Role!]!
   properties: [Property!]!
+  categories: [Category!]!
+  tags: [Tag!]!
 }
 
 type Admin {
@@ -96,11 +163,20 @@ type Admin {
 
 type Query {
   tenent(id: Int!): Tenant!
+  admin_users(roles: [validRoles!]): [User!]!
   admin(id: Int!): Admin!
   roles: [Role!]!
   user: [User!]!
   listAllUserLoandLord: [Landlord!]!
   findOneUserLandlord(id: String!): Landlord!
+}
+
+"""estos son los roles permitodos para la plataforma"""
+enum validRoles {
+  LANDLORD
+  TENANT
+  ADMIN
+  BUSINESS
 }
 
 type Mutation {

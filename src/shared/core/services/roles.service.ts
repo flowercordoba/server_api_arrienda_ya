@@ -9,6 +9,8 @@ import { tenantPermissions } from "../constants/tenantPermissions";
 import { Permission } from "../entities/permission.entity";
 import { Role } from "../entities/roles.entity";
 import { User } from "@root/features/user/entities/user.entity";
+import { UserRole } from "@root/shared/enum/roles.enum";
+import { ValidRolesArgs } from "@root/shared/args/roles.args";
 
 @Injectable()
 export class RolesInitializationService {
@@ -35,10 +37,10 @@ export class RolesInitializationService {
       }
     }
 
-    await this.createRole('tenant', tenantPermissions);
-    await this.createRole('landlord', landlordPermissions);
-    await this.createRole('admin', adminPermissions);
-    await this.createRole('business', businessPermissions);
+    await this.createRole(UserRole.TENANT, tenantPermissions);
+    await this.createRole(UserRole.LANDLORD, landlordPermissions);
+    await this.createRole(UserRole.ADMIN, adminPermissions);
+    await this.createRole(UserRole.BUSINESS, businessPermissions);
   }
 
   public async createRole(roleName: string, permissionNames: string[]) {
@@ -53,9 +55,16 @@ export class RolesInitializationService {
   }
 
    // Listar todos los roles
-   async listAllRoles(): Promise<Role[]> {
-    return this.roleRepository.find({ relations: ['permissions'] });
-  }
+   async listAllRoles(validRolesArgs: ValidRolesArgs): Promise<Role[]> {
+    if (!validRolesArgs.roles || validRolesArgs.roles.length === 0) {
+        return this.roleRepository.find(); 
+    }
+    
+    return this.roleRepository.find({
+        where: { name: In(validRolesArgs.roles) }, 
+        relations: ['users','permissions']
+    });
+}
 
   // Editar un rol
   async updateRole(id: string, newName: string, permissionNames: string[]): Promise<Role> {
