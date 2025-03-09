@@ -4,7 +4,6 @@ import { PgModule } from './modules/pg/pg.module';
 
 @Module({
   imports: [
-  
     AppGraphQLModule,
     PgModule,
   ],

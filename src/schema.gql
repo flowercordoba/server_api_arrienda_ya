@@ -2,102 +2,44 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Auth {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Permission {
   id: ID!
   name: String!
 }
 
-type Role {
-  id: ID!
-  name: String!
-  permissions: [Permission!]
-  users: [User!]
-}
-
-type Tenant {
-  id: String!
-  fullName: String!
-  phoneNumber: String!
-  profilePicture: String
-  address: String!
-  city: String!
-  country: String!
-  preferredPaymentMethod: String
-  preferredCurrency: String
-  user: User!
-}
-
-type Tag {
-  id: ID!
-  name: String!
-  properties: [Property!]!
-}
-
-type Property {
-  id: ID!
-  name: String
-  price: Float!
-  location: String
-  status: String
-  description: String
-  createdBy: User!
-  tags: [Tag!]
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-type User {
-  id: String!
-  name: String!
-  email: String!
-  primaryRole: String!
-  roles: [Role!]!
-  properties: [Property!]!
-}
-
-type Admin {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 type Query {
-  tenent(id: Int!): Tenant!
-  admin(id: Int!): Admin!
-  roles: [Role!]!
-  user: [User!]!
+  auth: [Auth!]!
+  user(id: Int!): User!
 }
 
 type Mutation {
-  createTenent(createTenentInput: CreateTenentInput!): Tenant!
-  updateTenent(updateTenentInput: UpdateTenentInput!): Tenant!
-  removeTenent(id: Int!): Tenant!
-  createAdmin(createAdminInput: CreateAdminInput!): Admin!
-  updateAdmin(updateAdminInput: UpdateAdminInput!): Admin!
-  removeAdmin(id: Int!): Admin!
+  createAuth(createAuthInput: CreateAuthInput!): Auth!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
 }
 
-input CreateTenentInput {
+input CreateAuthInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input UpdateTenentInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateAdminInput {
+input CreateUserInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input UpdateAdminInput {
+input UpdateUserInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!

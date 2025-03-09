@@ -2,7 +2,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Client } from '@elastic/elasticsearch';
 import * as dotenv from 'dotenv';
-import { User } from '@root/features/user/entities/user.entity';
 
 dotenv.config();
 
@@ -64,21 +63,21 @@ export class ElasticsearchService implements OnModuleInit {
     // console.log('Índice my_custom_index creado con mapeo correcto'); 
   }
 
-  async createUser(users: User[]) {
-    for (const user of users) {
-      await this.esClient.index({
-        index: 'my_custom_index', 
-        id: user.id.toString(), // Asegúrate de que el id sea tratado como una cadena
-        body: {
-          ...user,
-          '@timestamp': new Date(),
-        },
-      });
-    }
+  // async createUser(users: User[]) {
+  //   for (const user of users) {
+  //     await this.esClient.index({
+  //       index: 'my_custom_index', 
+  //       id: user.id.toString(), // Asegúrate de que el id sea tratado como una cadena
+  //       body: {
+  //         ...user,
+  //         '@timestamp': new Date(),
+  //       },
+  //     });
+  //   }
 
-    await this.esClient.indices.refresh({ index: 'my_custom_index' }); 
-    // console.log('Usuarios creados en Elasticsearch');
-  }
+  //   await this.esClient.indices.refresh({ index: 'my_custom_index' }); 
+  //   // console.log('Usuarios creados en Elasticsearch');
+  // }
 
   async verifyUsers() {
     const result = await this.esClient.search({
